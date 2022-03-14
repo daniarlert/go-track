@@ -41,15 +41,11 @@ func IsBlackjack(card1, card2 string) bool {
 
 // LargeHand implements the decision tree for hand scores larger than 20 points.
 func LargeHand(isBlackjack bool, dealerScore int) string {
-	if !isBlackjack {
-		return "P"
-	}
-
-	if dealerScore < 10 {
+	if isBlackjack && dealerScore < 10 {
 		return "W"
 	}
 
-	if dealerScore >= 10 {
+	if isBlackjack && dealerScore >= 10 {
 		return "S"
 	}
 
@@ -58,7 +54,7 @@ func LargeHand(isBlackjack bool, dealerScore int) string {
 
 // SmallHand implements the decision tree for hand scores with less than 21 points.
 func SmallHand(handScore, dealerScore int) string {
-	if (handScore <= 11 || handScore >= 12) && handScore <= 16 && dealerScore >= 7 {
+	if handScore <= 11 || handScore >= 12 && handScore <= 16 && dealerScore >= 7 {
 		return "H"
 	}
 
